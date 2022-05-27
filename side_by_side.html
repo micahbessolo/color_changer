@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="side_by_side.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="columns" style="width: 100%; display: table; margin: 0;">
+        <div id="div1" class="column">Left</div>
+        <div id="div2" class="column">middle left</div>
+        <div id="div3" class="column">Middle</div>
+        <div id="div4" class="column">middle right</div>
+        <div id="div5" class="column">right</div>
+    </div>
+    <button>Switch Color</button>
+    <script type="text/javascript">
+        var color = ["#ebb434", "#f368e0","#ee5253","#0abde3",
+        "#10ac84","#222f3e", "#5f27cd"];
+        var i = 0;
+        let clicked_array = [false, false, false, false, false]
+        document.querySelector("button").addEventListener("click",
+            function(){
+            i = i < color.length ? ++i : 0;
+        var col = document.querySelectorAll(".column")
+
+        let arr = []; // array of 5 diff rand nums
+        while(arr.length < 5){
+            var r = Math.floor(Math.random() * color.length);
+            if(arr.indexOf(r) === -1) arr.push(r);
+        }
+
+        
+        for (let x = 0; x < 5; x++) { // makes array of booleans whether column clicked
+        document.getElementsByClassName('column')[x]
+        .addEventListener('click', function (event) {
+            clicked_array[x] = !clicked_array[x]
+        });
+    }
+        
+        let temp = 0; // picks colors based on whether column clicked and colors
+        for (let cell of col) {
+            if (clicked_array[temp] == false) {
+            cell.style.backgroundColor = color[arr[temp]];
+            temp++;
+            }
+            else {
+            cell.style.backgroundColor = cell.style.backgroundColor;
+            temp++;    
+            }
+        }
+        })
+        
+           
+        
+
+    </script>
+</body>
+</html>
